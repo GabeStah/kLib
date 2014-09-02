@@ -1,0 +1,16 @@
+## Title: kLib |cffb5a5d5[0.0.100]|r
+## Version: 0.0.100
+## Author: Kulldam
+## Notes: ADDON DESCRIPTION
+## Interface: 50300
+## SavedVariables: kLibDB
+## LoadOnDemand: 0
+
+LibStub.lua
+kLibColor-1.0\kLibColor-1.0.xml
+kLibItem-1.0\kLibItem-1.0.xml
+kLibOptions-1.0\kLibOptions-1.0.xml
+kLibTimer-1.0\kLibTimer-1.0.xml
+kLibUtility-1.0\kLibUtility-1.0.xml
+
+kLib-1.0.lua
