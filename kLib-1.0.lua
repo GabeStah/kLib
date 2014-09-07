@@ -38,9 +38,24 @@ function kLib:Debug(...)
   end
 end
 
+--[[ Output basic error messages
+]]
+function kLib:Error(...)
+  if not ... then return end
+  self:Print(ChatFrame1, ('Error: %s'):format(strjoin(' - ', ...)))
+end
+
+--[[ Check if debug mode active
+]]
+function kLib:InDebug()
+  return self.db.profile.debug.enabled
+end
+
 --- embedding and embed handling
 local mixins = {
-  "Debug",
+  'Debug',
+  'Error',
+  'InDebug',
 } 
 
 -- Embeds kLib into the target object making the functions from the mixins list available on target:..

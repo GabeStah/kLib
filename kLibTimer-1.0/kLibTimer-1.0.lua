@@ -20,8 +20,6 @@ local type, pairs, error = type, pairs, error
 local format, strfind, strsub = string.format, string.find, string.sub
 local max = math.max
 
-self.timers = {}
-
 --[[ Check if timer should be cancelled
 ]]
 function kLibTimer:Timer_Cancel(timer)

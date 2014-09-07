@@ -171,6 +171,40 @@ function kLibUtility:Utility_SplitString(subject, delimiter)
   return result
 end
 
+--[[ Check if table has value
+]]
+function kLibUtility:Utility_TableContains(tbl, value, ...)
+  if ... then
+    local count = #{...}
+    for table_index, table_item in pairs(tbl) do
+      data = nil
+      if count and (count > 1) then
+        for i,v in pairs({...}) do
+          if i==1 then
+            -- Check for first value
+            data = table_item[v]
+          else
+            if i ~= count then 
+              if not data[v] then 
+                data[v] = {} 
+              else 
+                data = data[v] 
+              end 
+            else 
+              data = data[v] 
+            end
+          end
+        end
+      else 
+        data = table_item[select(1, ...)]
+      end
+      if (value == data) then return true end
+    end
+  else
+    return tContains(tbl, value)
+  end
+end
+
 --[[ Get difference in timestamps
 ]]
 function kLibUtility:Utility_TimestampDiff(time1, time2, interval)
@@ -205,6 +239,7 @@ local mixins = {
   'Utility_MatchTables',
   'Utility_Round',
   'Utility_SplitString',
+  'Utility_TableContains',
   'Utility_TimestampDiff'
 } 
 
