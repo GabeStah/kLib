@@ -25,7 +25,7 @@ local max = math.max
 function kLibTimer:Timer_Cancel(timer)
   timer = self:Timer_Get(timer)
   if not timer then
-    self:Error('Timer_Cancel', 'Invalid timer, cancellation ignored.')
+    self:Debug('Timer_Cancel', 'Invalid timer, cancellation ignored.', 1)
     return
   end 
   if timer.cancel then
@@ -73,7 +73,7 @@ end
 function kLibTimer:Timer_Destroy(timer)
   timer = self:Timer_Get(timer)
   if not timer then
-    self:Error('Timer_Destroy', 'Invalid timer, destroy cancelled.')
+    self:Debug('Timer_Destroy', 'Invalid timer, destroy cancelled.', 1)
     return
   end
   for i,v in pairs(self.timers) do
@@ -89,7 +89,7 @@ end
 function kLibTimer:Timer_Execute(timer)
   timer = self:Timer_Get(timer)
   if not timer then
-    self:Error('Timer_Execute', 'Invalid timer, execution halted.')
+    self:Debug('Timer_Execute', 'Invalid timer, execution halted.', 1)
     return
   end
   -- Check if func is string
