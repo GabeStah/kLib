@@ -155,6 +155,21 @@ function kLibUtility:Utility_Round(value, decimal)
   end
 end
 
+--[[ Convert seconds integer into clock output
+]]
+function kLibUtility:Utility_SecondsToClock(seconds)
+  seconds = tonumber(seconds)
+  if seconds == 0 then return end
+  hours = string.format("%02.f", math.floor(seconds/3600));
+  mins = string.format("%02.f", math.floor(seconds/60 - (hours*60)));
+  secs = string.format("%02.f", math.floor(seconds - hours*3600 - mins *60));
+  if seconds >= 60*60 then
+    return hours..":"..mins..":"..secs
+  else
+    return mins..":"..secs
+  end
+end
+
 --[[ Split a string into a table
 ]]
 function kLibUtility:Utility_SplitString(subject, delimiter)
@@ -238,6 +253,7 @@ local mixins = {
   'Utility_IsSelf',
   'Utility_MatchTables',
   'Utility_Round',
+  'Utility_SecondsToClock',
   'Utility_SplitString',
   'Utility_TableContains',
   'Utility_TimestampDiff'
