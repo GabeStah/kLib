@@ -27,10 +27,12 @@ function kLib:Debug(...)
   if type(threshold) ~= 'number' then threshold = 3 end
   if self.db.profile.debug.enabled then
     if (threshold >= self.db.profile.debug.threshold) then
-      if isSpewLoaded then
-        Spew(...)
-      elseif isDevLoaded then
+	  containsTable = false
+	  for i,v in pairs({...}) do if type(v) == 'table' then containsTable = true end end
+      if isDevLoaded and containsTable then
         dump(prefix, ...)
+	  elseif isSpewLoaded then
+        Spew(...)
       else
         self:Print(ChatFrame1, ('%s%s'):format(prefix,...))     
       end
