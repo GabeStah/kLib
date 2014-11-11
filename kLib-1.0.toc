@@ -1,8 +1,8 @@
-## Title: kLib |cffb5a5d5[0.8.365]|r
-## Version: 0.8.365
+## Title: kLib |cffb5a5d5[0.8.375]|r
+## Version: 0.8.375
 ## Author: Kulldam
 ## Notes: A selection of helper modules for k-series addons.
-## Interface: 50400
+## Interface: 60000
 ## SavedVariables: kLibDB
 ## LoadOnDemand: 0
 
