@@ -170,6 +170,20 @@ function kLibUtility:Utility_SecondsToClock(seconds)
   end
 end
 
+--[[ Shuffle a table randomly
+]]
+function kLibUtility:Utility_Shuffle(table)
+  if not table or not type(table) == 'table' then return end
+  local rand = math.random
+  local iterations = #table
+  local j
+  for i = iterations, 2, -1 do -- backwards
+    j = rand(i)
+    table[i], table[j] = table[j], table[i]
+  end
+  return table
+end
+
 --[[ Split a string into a table
 ]]
 function kLibUtility:Utility_SplitString(subject, delimiter)
@@ -254,6 +268,7 @@ local mixins = {
   'Utility_MatchTables',
   'Utility_Round',
   'Utility_SecondsToClock',
+  'Utility_Shuffle',
   'Utility_SplitString',
   'Utility_TableContains',
   'Utility_TimestampDiff'

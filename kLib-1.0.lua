@@ -47,10 +47,62 @@ function kLib:Error(...)
   self:Print(ChatFrame1, ('Error: %s'):format(strjoin(' - ', ...)))
 end
 
+--[[ Format realm name
+]]
+function kLib:FormatRealm(realm)
+  realm = realm and realm or self.realm
+  return string.lower(string.gsub(realm, " ", "-"))
+end
+
+--[[ Retrieve the region based on locale string
+]]
+function kLib:GetRegion()
+	local locales = {
+		deDE = 'eu',
+		enGB = 'eu',
+		enUS = 'us',
+		esES = 'us',
+		esMX = 'us',
+		frFR = 'eu',
+		itIT = 'eu',
+		koKR = 'kr',
+		ptBR = 'us',
+		ruRU = 'eu',
+		zhCN = 'tw',
+		zhTW = 'tw',
+	}
+	
+	return locales[GetLocale()]
+end
+
 --[[ Check if debug mode active
 ]]
 function kLib:InDebug()
   return self.db.profile.debug.enabled
+end
+
+--[[ Determine if object is of custom type
+]]
+function kLib:IsType(object, type)
+  return (self:Type(object) == type)
+end
+
+-- [[ Determine the type of passed object (custom or standard) ]]
+function kLib:Type(object)
+  -- check if type is table, possibly containing custom type
+  if type(object) == 'table' then
+    if object.type then
+      return object.type
+    elseif object.objectType then
+      return object.objectType
+    elseif object.object_type then
+      return object.object_type
+    else
+      return type(object)
+    end
+  else
+    return type(object)    
+  end
 end
 
 --- embedding and embed handling
@@ -58,6 +110,10 @@ local mixins = {
   'Debug',
   'Error',
   'InDebug',
+  'FormatRealm',
+  'GetRegion',
+  'IsType',
+  'Type',
 } 
 
 -- Embeds kLib into the target object making the functions from the mixins list available on target:..

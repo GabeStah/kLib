@@ -135,7 +135,7 @@ function kLibTimer:Timer_ProcessAll(updateType)
       end
     else
       if self.timers[i].time then
-        if self.timers[i].time <= time then
+        if self.timers[i].time <= GetTime() then
           -- One-time exec, remove
           self:Timer_Execute(self.timers[i])
           self:Timer_Destroy(self.timers[i])
