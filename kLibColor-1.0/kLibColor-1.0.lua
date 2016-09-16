@@ -87,7 +87,7 @@ function kLibColor:Color_FromHex(color)
     if not color or not (type(color) == 'string') or not (color:len() == 8 or color:len() == 6) or not color:find('^%x*$') then return end
     local r, g, b, a
     if color:len() == 8 then
-        r, g, b, a = tonumber(color:sub(1, 2), 16) / 255, tonumber(color:sub(3, 4), 16) / 255, tonumber(color:sub(5, 6), 16) / 255, tonumber(color:sub(7, 8), 16) / 255
+        a, r, g, b = tonumber(color:sub(1, 2), 16) / 255, tonumber(color:sub(3, 4), 16) / 255, tonumber(color:sub(5, 6), 16) / 255, tonumber(color:sub(7, 8), 16) / 255
         if r >= 0.0 and r <= 1.0 and g >= 0.0 and g <= 1.0 and b >= 0.0 and b <= 1.0 and a >= 0.0 and a <= 1.0 then
 
         elseif r >= 0 and r <= 255 and g >= 0 and g <= 255 and b >= 0 and b <= 255 and a >= 0 and a <= 255 then
@@ -98,7 +98,7 @@ function kLibColor:Color_FromHex(color)
             a = a / 255
         end
     else
-        r, g, b, a = tonumber(color:sub(1, 2), 16) / 255, tonumber(color:sub(3, 4), 16) / 255, tonumber(color:sub(5, 6), 16) / 255, 1
+        a, r, g, b = tonumber(color:sub(1, 2), 16) / 255, tonumber(color:sub(3, 4), 16) / 255, tonumber(color:sub(5, 6), 16) / 255, 1
         if r >= 0.0 and r <= 1.0 and g >= 0.0 and g <= 1.0 and b >= 0.0 and b <= 1.0 and a >= 0.0 and a <= 1.0 then
 
         elseif r >= 0 and r <= 255 and g >= 0 and g <= 255 and b >= 0 and b <= 255 and a >= 0 and a <= 255 then
@@ -128,32 +128,31 @@ end
 ]]
 function kLibColor:Color_FromValues(r, g, b, a)
     if not r or not g or not b then return end
-    a = tonumber(a) or 1
+    a = a or 1
     local color
     -- Check if any > 1
     if tonumber(r) > 1 or tonumber(g) > 1 or tonumber(b) > 1 or tonumber(a) > 1 then -- Assumed 255 vals
-    if a == 1 then a = 255 end
-    color = {
-        r = r / 255,
-        g = g / 255,
-        b = b / 255,
-        a = a / 255,
-    }
+        if a == 1 then a = 255 end
+        color = {
+            r = r / 255,
+            g = g / 255,
+            b = b / 255,
+            a = a / 255,
+        }
     elseif not self:Utility_IsInteger(r) or not self:Utility_IsInteger(g) or not self:Utility_IsInteger(b) or not self:Utility_IsInteger(a) then -- percentages
-    color = {
-        r = r,
-        g = g,
-        b = b,
-        a = a,
-    }
-    elseif (tonumber(r) == 1 and tonumber(g) == 1 and tonumber(b) == 1 and tonumber(a) == 1) or
-            (tonumber(r) == 0 and tonumber(g) == 0 and tonumber(b) == 0 and tonumber(a) == 0) then -- percentages
-    color = {
-        r = r,
-        g = g,
-        b = b,
-        a = a,
-    }
+        color = {
+            r = r,
+            g = g,
+            b = b,
+            a = a,
+        }
+    else
+        color = {
+            r = r,
+            g = g,
+            b = b,
+            a = a,
+        }
     end
     return color
 end
