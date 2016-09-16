@@ -8,34 +8,34 @@ local kLibView = _G.kLibView
 --[[ Create basic button frame
 ]]
 function kLibView:View_Button_Create(name, parent, width, height, defaultColor, selectedColor, hoverColor)
-	self:Debug('View_Button_Create', 'name: ', name, 'parent: ', parent, 2)
-	width = width or 80
-	height = height or 80
-	local frame = self:View_Frame_Create(name, parent, width, height, defaultColor)
-	-- Flags
-	frame.objectType = 'Button'
-	frame.selected = false
-	
-	-- Colors
-	self:View_SetColor(frame, 'default', defaultColor)
-	self:View_SetColor(frame, 'selected', selectedColor)
-	self:View_SetColor(frame, 'hover', hoverColor)
-		
-	-- Events
-	frame:addEvent('OnEnter', function()
-		self:View_UpdateColor(frame, 'OnEnter')
-	end)	
-	frame:addEvent('OnLeave', function()
-		self:View_UpdateColor(frame, 'OnLeave')
-	end)
-	frame:addEvent('OnMouseDown', function()
-		self:View_SetFlag(frame, 'selected', not self:View_GetFlag(frame, 'selected'))
-		self:View_UpdateColor(frame, 'OnMouseDown')
-	end)
-	
-	-- Set point
-	frame:SetPoint('CENTER')
-	-- Color redraw
-	self:View_UpdateColor(frame)
-	return frame
+    self:Debug('View_Button_Create', 'name: ', name, 'parent: ', parent, 2)
+    width = width or 80
+    height = height or 80
+    local frame = self:View_Frame_Create(name, parent, width, height, defaultColor)
+    -- Flags
+    frame.objectType = 'Button'
+    frame.selected = false
+
+    -- Colors
+    self:View_SetColor(frame, 'default', defaultColor)
+    self:View_SetColor(frame, 'selected', selectedColor)
+    self:View_SetColor(frame, 'hover', hoverColor)
+
+    -- Events
+    frame:addEvent('OnEnter', function()
+        self:View_UpdateColor(frame, 'OnEnter')
+    end)
+    frame:addEvent('OnLeave', function()
+        self:View_UpdateColor(frame, 'OnLeave')
+    end)
+    frame:addEvent('OnMouseDown', function()
+        self:View_SetFlag(frame, 'selected', not self:View_GetFlag(frame, 'selected'))
+        self:View_UpdateColor(frame, 'OnMouseDown')
+    end)
+
+    -- Set point
+    frame:SetPoint('CENTER')
+    -- Color redraw
+    self:View_UpdateColor(frame)
+    return frame
 end

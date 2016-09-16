@@ -8,16 +8,16 @@ local kLibView = _G.kLibView
 --[[ Create basic button frame
 ]]
 function kLibView:View_Icon_Create(name, parent, width, height, icon)
-	self:Debug('View_Icon_Create', 'name: ', name, 'parent: ', parent, 'icon: ', icon, 2)
-	width = width or 80
-	height = height or 80
-	local frame = self:View_Frame_Create(name, parent, width, height, icon)
-	-- Flags
-	frame.objectType = 'Icon'
-	frame.selected = false
-		
-	-- Set point
-	frame:SetPoint('CENTER')
-	
-	return frame
+    self:Debug('View_Icon_Create', 'name: ', name, 'parent: ', parent, 'icon: ', icon, 2)
+    width = width or 80
+    height = height or 80
+    local frame = self:View_Frame_Create(name, parent, width, height, icon)
+    -- Flags
+    frame.objectType = 'Icon'
+    frame.selected = false
+
+    -- Set point
+    frame:SetPoint('CENTER')
+
+    return frame
 end

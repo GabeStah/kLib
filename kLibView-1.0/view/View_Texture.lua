@@ -8,30 +8,30 @@ local kLibView = _G.kLibView
 --[[ Create texture for frame
 ]]
 function kLibView:View_Texture_Create(frame, color)
-	if not frame then return end
-	local object = frame.texture or frame:CreateTexture(nil,'BACKGROUND')
-	object.objectType = 'Texture'
-	if type(color) == 'string' then
-		object:SetTexture(color)
-	else
-		self:View_SetColor(frame, 'default', color)
-		color = self:Color_Get(self:View_GetColor(frame, 'default'))		
-		object:SetTexture(color.r, color.g, color.b, color.a)
-	end
-	object:SetAllPoints(frame)
-	frame.texture = object
+    if not frame then return end
+    local object = frame.texture or frame:CreateTexture(nil, 'BACKGROUND')
+    object.objectType = 'Texture'
+    if type(color) == 'string' then
+        object:SetTexture(color)
+    else
+        self:View_SetColor(frame, 'default', color)
+        color = self:Color_Get(self:View_GetColor(frame, 'default'))
+        object:SetTexture(color.r, color.g, color.b, color.a)
+    end
+    object:SetAllPoints(frame)
+    frame.texture = object
 end
 
 --[[ Update texture for frame
 ]]
 function kLibView:View_Texture_Update(frame, color)
-	if not frame or not frame.texture then return end
-	if type(color) == 'string' then
-		frame.texture:SetTexture(color)
-	else
-		color = self:Color_Get(color) or self:Color_Get(self:View_GetColor(frame, 'default'))
-		if not color then return end
-		frame.texture:SetTexture(color.r, color.g, color.b, color.a)
-	end
-	frame.texture:SetAllPoints(frame)
+    if not frame or not frame.texture then return end
+    if type(color) == 'string' then
+        frame.texture:SetTexture(color)
+    else
+        color = self:Color_Get(color) or self:Color_Get(self:View_GetColor(frame, 'default'))
+        if not color then return end
+        frame.texture:SetTexture(color.r, color.g, color.b, color.a)
+    end
+    frame.texture:SetAllPoints(frame)
 end
