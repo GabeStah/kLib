@@ -20,22 +20,30 @@ local _G = _G
 --[[ Create debug messages
 ]]
 function kLib:Debug(...)
-    local isDevLoaded = IsAddOnLoaded('_Dev')
-    local isSpewLoaded = IsAddOnLoaded('Spew')
-    local prefix = "|cff33ff99" .. tostring(self) .. "|r: "
-    local threshold = select(select('#', ...), ...) or 3
+    if not IsAddOnLoaded('Blizzard_DebugTools') then
+        LoadAddOn('Blizzard_DebugTools')
+    end
+    local prefix = self:Color_String(tostring(self), 1, 0.5, 0.5, 1)
+    local args = {...}
+    local threshold = args[#args] or 3
     if type(threshold) ~= 'number' then threshold = 3 end
     if self.db.profile.debug.enabled then
         if (threshold >= self.db.profile.debug.threshold) then
-            containsTable = false
-            for _, v in pairs({ ... }) do if type(v) == 'table' then containsTable = true end end
-            if isDevLoaded and containsTable then
-                dump(prefix, ...)
-            elseif isSpewLoaded then
-                Spew(...)
-            else
-                self:Print(ChatFrame1, ('%s%s'):format(prefix, ...))
+            -- Check if contains enough values for threshold.
+            if #args >= 2 then
+                local last = args[#args]
+                -- Is last value numeric.
+                if type(last) == 'number' then
+                    -- If within valid thresholds.
+                    if last >= 0 and last <= 3 then
+                        -- Remove final value from list.
+                        tremove(args, #args)
+                    end
+                end
             end
+            print(prefix)
+            -- Output
+            DevTools_Dump(args)
         end
     end
 end
