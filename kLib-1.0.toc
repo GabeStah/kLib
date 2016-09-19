@@ -1,5 +1,5 @@
 ## Title: kLib
-## Version: 1.0.28
+## Version: 1.0.29
 ## Author: Kulldam
 ## Notes: A selection of helper modules for k-series addons.
 ## Interface: 70300
