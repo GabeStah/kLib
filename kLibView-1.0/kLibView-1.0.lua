@@ -6,7 +6,7 @@ local loadstring, assert, error = loadstring, assert, error
 
 local MAJOR, MINOR = "kLibView-1.0", 1
 
-local kLibView, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
+local kLibView, oldminor = LibStub:GetLibrary(MAJOR, true) and LibStub:GetLibrary(MAJOR, true) or LibStub:NewLibrary(MAJOR, MINOR)
 
 _G.kLibView = kLibView
 

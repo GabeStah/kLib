@@ -1,6 +1,6 @@
 local MAJOR, MINOR = "kLib-1.0", 1
 
-local kLib = LibStub:NewLibrary(MAJOR, MINOR)
+local kLib = LibStub:GetLibrary(MAJOR, true) and LibStub:GetLibrary(MAJOR, true) or LibStub:NewLibrary(MAJOR, MINOR)
 
 if not kLib then return end -- No upgrade needed
 

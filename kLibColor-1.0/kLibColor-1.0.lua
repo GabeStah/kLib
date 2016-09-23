@@ -6,7 +6,7 @@ local loadstring, assert, error = loadstring, assert, error
 
 local MAJOR, MINOR = "kLibColor-1.0", 1
 
-local kLibColor, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
+local kLibColor, oldminor = LibStub:GetLibrary(MAJOR, true) and LibStub:GetLibrary(MAJOR, true) or LibStub:NewLibrary(MAJOR, MINOR)
 
 if not kLibColor then return end -- No upgrade needed
 

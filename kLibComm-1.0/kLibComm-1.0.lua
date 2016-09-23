@@ -6,7 +6,7 @@ local loadstring, assert, error = loadstring, assert, error
 
 local MAJOR, MINOR = "kLibComm-1.0", 1
 
-local kLibComm, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
+local kLibComm, oldminor = LibStub:GetLibrary(MAJOR, true) and LibStub:GetLibrary(MAJOR, true) or LibStub:NewLibrary(MAJOR, MINOR)
 
 if not kLibComm then return end -- No upgrade needed
 

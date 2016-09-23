@@ -6,7 +6,7 @@ local loadstring, assert, error = loadstring, assert, error
 
 local MAJOR, MINOR = "kLibTimer-1.0", 1
 
-local kLibTimer, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
+local kLibTimer, oldminor = LibStub:GetLibrary(MAJOR, true) and LibStub:GetLibrary(MAJOR, true) or LibStub:NewLibrary(MAJOR, MINOR)
 
 if not kLibTimer then return end -- No upgrade needed
 
